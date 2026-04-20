@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+// Base class
+class Shape {
+    protected double d1;
+    protected double d2;
+
+    // Method to initialize dimensions
+    public void getData(double d1, double d2) {
+        this.d1 = d1;
+        this.d2 = d2;
+    }
+}
+
+// Derived class: Triangle
+class Triangle extends Shape {
+
+    // Area of triangle = 1/2 * base * height
+    public double getArea() {
+        return 0.5 * d1 * d2;
+    }
+}
+
+// Derived class: Rectangle
+class Rectangle extends Shape {
+
+    // Area of rectangle = length * width
+    public double getArea() {
+        return d1 * d2;
+    }
+}
+
+// Main class
+public class ShapeTest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Triangle
+        System.out.print("Enter base and height of triangle: ");
+        double b1 = scanner.nextDouble();
+        double h1 = scanner.nextDouble();
+
+        Triangle t = new Triangle();
+        t.getData(b1, h1);
+
+        // Rectangle
+        System.out.print("Enter length and width of rectangle: ");
+        double l1 = scanner.nextDouble();
+        double w1 = scanner.nextDouble();
+
+        Rectangle r = new Rectangle();
+        r.getData(l1, w1);
+
+        // Display results
+        System.out.println("\n--- Areas ---");
+        System.out.println("Triangle Area: " + t.getArea());
+        System.out.println("Rectangle Area: " + r.getArea());
+
+        scanner.close();
+    }
+}
