@@ -1,0 +1,92 @@
+import java.util.Scanner;
+
+// Base class
+class BankAccount {
+    protected String accountNumber;
+    protected String accountHolderName;
+    protected double balance;
+
+    // Open account
+    public void openAccount(String accNo, String name, double initialDeposit) {
+        this.accountNumber = accNo;
+        this.accountHolderName = name;
+        this.balance = initialDeposit;
+        System.out.println("Account successfully opened!");
+    }
+
+    // Deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + " deposited successfully.");
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    // Withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println(amount + " withdrawn successfully.");
+        } else {
+            System.out.println("Insufficient balance or invalid amount.");
+        }
+    }
+
+    // Check balance
+    public void checkBalance() {
+        System.out.println("Current Balance: " + balance);
+    }
+}
+
+// Saving Account subclass
+class SavingAccount extends BankAccount {
+    private double interestRate = 0.04; // 4%
+
+    public void calculateInterest() {
+        double interest = balance * interestRate;
+        System.out.println("Savings Interest: " + interest);
+    }
+}
+
+// Fixed Deposit Account subclass
+class FixedDepositAccount extends BankAccount {
+    private double interestRate = 0.07; // 7%
+    private int years;
+
+    public void setFDDetails(int years) {
+        this.years = years;
+    }
+
+    public void maturityAmount() {
+        double maturity = balance + (balance * interestRate * years);
+        System.out.println("Maturity Amount after " + years + " years: " + maturity);
+    }
+}
+
+// Main class
+public class BankSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Savings Account
+        SavingAccount sa = new SavingAccount();
+        sa.openAccount("S101", "Alice", 10000);
+        sa.deposit(5000);
+        sa.withdraw(2000);
+        sa.checkBalance();
+        sa.calculateInterest();
+
+        System.out.println("\n----------------------\n");
+
+        // Fixed Deposit Account
+        FixedDepositAccount fd = new FixedDepositAccount();
+        fd.openAccount("F201", "Bob", 20000);
+        fd.setFDDetails(3);
+        fd.checkBalance();
+        fd.maturityAmount();
+
+        scanner.close();
+    }
+}
