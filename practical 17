@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+// Interface 1
+interface Exam {
+    boolean isPassed(int mark);
+}
+
+// Interface 2
+interface Classify {
+    String getDivision(double average);
+}
+
+// Class implementing both interfaces
+class Result implements Exam, Classify {
+
+    // Implementation of Exam interface method
+    public boolean isPassed(int mark) {
+        return mark >= 40;
+    }
+
+    // Implementation of Classify interface method
+    public String getDivision(double average) {
+        if (average >= 60) {
+            return "First Division";
+        } else if (average >= 50) {
+            return "Second Division";
+        } else if (average >= 40) {
+            return "Third Division";
+        } else {
+            return "Fail";
+        }
+    }
+}
+
+// Main class
+public class InterfaceTest {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        Result result = new Result();
+
+        // Input marks and average
+        System.out.print("Enter mark: ");
+        int mark = scanner.nextInt();
+
+        System.out.print("Enter average: ");
+        double average = scanner.nextDouble();
+
+        // Using Exam interface method
+        if (result.isPassed(mark)) {
+            System.out.println("Result: Passed");
+        } else {
+            System.out.println("Result: Failed");
+        }
+
+        // Using Classify interface method
+        System.out.println("Division: " + result.getDivision(average));
+
+        scanner.close();
+    }
+}
