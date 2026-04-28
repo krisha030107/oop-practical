@@ -1,11 +1,7 @@
 abstract class Vehicle {
-
-    // Abstract methods
     abstract String fuelType();
     abstract int noOfWheels();
 }
-
-// Car class
 class Car extends Vehicle {
 
     @Override
@@ -18,8 +14,6 @@ class Car extends Vehicle {
         return 4;
     }
 }
-
-// Bike class
 class Bike extends Vehicle {
 
     @Override
@@ -32,8 +26,6 @@ class Bike extends Vehicle {
         return 2;
     }
 }
-
-// Main class
 public class VehicleTest {
     public static void main(String[] args) {
 
