@@ -1,43 +1,45 @@
-abstract class Vehicle {
-    abstract String fuelType();
-    abstract int noOfWheels();
-}
-class Car extends Vehicle {
-    @Override
-    String fuelType() {
-        return "Petrol/Diesel";
+class Student {
+    protected int rollNo;
+    protected String name;
+
+    public Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
     }
 
-    @Override
-    int noOfWheels() {
-        return 4;
+    public void displayStudent() {
+        System.out.println("Roll Number : " + rollNo);
+        System.out.println("Name        : " + name);
     }
 }
 
-class Bike extends Vehicle {
-    @Override
-    String fuelType() {
-        return "Petrol";
+class Result extends Student {
+    private int marks1, marks2, marks3;
+
+    public Result(int rollNo, String name, int m1, int m2, int m3) {
+        super(rollNo, name);
+        this.marks1 = m1;
+        this.marks2 = m2;
+        this.marks3 = m3;
     }
 
-    @Override
-    int noOfWheels() {
-        return 2;
+    public void displayResult() {
+        displayStudent();
+
+        int total = marks1 + marks2 + marks3;
+        double avg = total / 3.0;
+
+        System.out.println("Marks 1 : " + marks1);
+        System.out.println("Marks 2 : " + marks2);
+        System.out.println("Marks 3 : " + marks3);
+        System.out.println("Total   : " + total);
+        System.out.println("Average : " + avg);
     }
 }
+
 public class Main {
     public static void main(String[] args) {
-        Vehicle car = new Car();
-        Vehicle bike = new Bike();
-
-        System.out.println("Car:");
-        System.out.println("Fuel Type: " + car.fuelType());
-        System.out.println("Number of Wheels: " + car.noOfWheels());
-
-        System.out.println();
-
-        System.out.println("Bike:");
-        System.out.println("Fuel Type: " + bike.fuelType());
-        System.out.println("Number of Wheels: " + bike.noOfWheels());
+        Result s = new Result(101, "Rahul", 85, 90, 88);
+        s.displayResult();
     }
 }
