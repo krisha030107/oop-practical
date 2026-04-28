@@ -1,20 +1,14 @@
 import java.util.Scanner;
-
-// Base class
 class BankAccount {
     protected String accountNumber;
     protected String accountHolderName;
     protected double balance;
-
-    // Open account
     public void openAccount(String accNo, String name, double initialDeposit) {
         this.accountNumber = accNo;
         this.accountHolderName = name;
         this.balance = initialDeposit;
         System.out.println("Account successfully opened!");
     }
-
-    // Deposit money
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -23,8 +17,6 @@ class BankAccount {
             System.out.println("Invalid deposit amount.");
         }
     }
-
-    // Withdraw money
     public void withdraw(double amount) {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
@@ -64,13 +56,9 @@ class FixedDepositAccount extends BankAccount {
         System.out.println("Maturity Amount after " + years + " years: " + maturity);
     }
 }
-
-// Main class
 public class BankSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Savings Account
         SavingAccount sa = new SavingAccount();
         sa.openAccount("S101", "Alice", 10000);
         sa.deposit(5000);
@@ -79,8 +67,6 @@ public class BankSystem {
         sa.calculateInterest();
 
         System.out.println("\n----------------------\n");
-
-        // Fixed Deposit Account
         FixedDepositAccount fd = new FixedDepositAccount();
         fd.openAccount("F201", "Bob", 20000);
         fd.setFDDetails(3);
