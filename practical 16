@@ -1,11 +1,7 @@
 interface Classify {
     String getDivision(double average);
 }
-
-// Implementation class
 class Result implements Classify {
-
-    // Implementing the interface method
     public String getDivision(double average) {
         if (average >= 60) {
             return "First Division";
